@@ -77,15 +77,15 @@
         <div class="mbr-section-head">
             <h4 class="mbr-section-title mbr-fonts-style align-center m-0 display-5"><strong>Trending Songs</strong></h4>
             
-        </div>
-        <div class="row mbr-gallery mt-4">
-            <div class="col-12 col-md-6 col-lg-3 item gallery-image active">
-                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#v8feyrMe6A-modal" data-bs-target="#v8feyrMe6A-modal">
-                    <a href="page2.html"><img class="w-100" src="assets/images/screenshot202025-12-2920141316-307x301.webp" alt="Mobirise Website Builder" data-slide-to="0" data-bs-slide-to="0" data-target="#lb-v8feyrMe6A" data-bs-target="#lb-v8feyrMe6A"></a>
-                    <div class="icon-wrapper">
-                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+            </div>
+            <div class="row mbr-gallery mt-4">
+                <div class="col-12 col-md-6 col-lg-3 item gallery-image active">
+                    <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#v8feyrMe6A-modal" data-bs-target="#v8feyrMe6A-modal">
+                        <a href="page2.html" onclick="playSong('Gehra Hua.mp3'); return false;"><img class="w-100" src="assets/images/screenshot202025-12-2920141316-307x301.webp" alt="Mobirise Website Builder" data-slide-to="0" data-bs-slide-to="0" data-target="#lb-v8feyrMe6A" data-bs-target="#lb-v8feyrMe6A"></a>
+                        <div class="icon-wrapper">
+                            <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                        </div>
                     </div>
-                </div>
                 <h6 class="mbr-item-subtitle mbr-fonts-style align-center mb-2 mt-2 display-7">
                     Gehra Hua<br><br><br><br></h6>
             </div><div class="col-12 col-md-6 col-lg-3 item gallery-image">
@@ -610,4 +610,42 @@
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
   </body>
+  <script>
+    let currentAudio = null;
+    
+    function playSong(songFile) {
+        // Stop any currently playing audio
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+        
+        // Play new song
+        currentAudio = new Audio('assets/audio/' + songFile);
+        currentAudio.play().catch(e => console.log("Audio error:", e));
+        
+        // Navigate after delay
+        setTimeout(() => {
+            window.location.href = 'page2.html';
+        }, 300);
+    }
+    
+    // Stop music when page is about to be unloaded (when going back)
+    window.addEventListener('beforeunload', function() {
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
+        }
+    });
+    
+    // Stop music when page is loaded (in case user comes back via browser back button)
+    window.addEventListener('load', function() {
+        if (currentAudio && !window.location.href.includes('page2.html')) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
+        }
+    });
+    </script>
 </html>

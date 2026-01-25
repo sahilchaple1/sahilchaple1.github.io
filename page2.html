@@ -24,7 +24,9 @@
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=ez6kZu"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=ez6kZu" type="text/css">
 
   
-  
+<!-- Add CSS and JS for music player -->
+<link rel="stylesheet" href="assets/css/player.css">
+<script src="assets/js/player.js"></script>
   
 </head>
 <body>
@@ -103,25 +105,52 @@
         
     </div>
 </section>
-
-<section data-bs-version="5.1" class="content9 cid-v6LeOj7ZbD" id="content9-t">
-    
-
+<section data-bs-version="5.1" class="music-player-section" id="music-player">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="counter-container col-md-12 col-lg-10">
-                
-                <div class="mbr-text mbr-fonts-style display-7">
-                    <ol>
-                        <li><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; No Coding </strong>You don't have to code to create your own site. Select one of available themes in the Mobirise sitebuilder. <a href="https://mobiri.se/">Try it now!</a></li>
-                        <li><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Mobile Friendly. </strong>All sites you create with the Mobirise web builder are mobile-friendly natively. No special actions required. <a href="https://mobiri.se/">Try it now!</a></li>
-                        <li><strong>Unique Styles. </strong>Select the theme that suits you. Each theme in the Mobirise site builder contains a set of unique blocks. <a href="https://mobiri.se/">Try it now!</a></li>
-                    </ol>
-                </div>
+        <div class="music-player-container">
+            <div class="player-header">
+                <h2 class="player-title display-5">Now Playing</h2>
+                <div class="separator"></div>
+            </div>
+            
+            <div class="player-content">
+                <h3 class="song-title display-7" id="songTitle">Aasma Aasma (From "Do Deewane Seher Mein")</h3>
+                <p class="song-artist display-4" id="songArtists">Jubin Nautiyal, Neeti Mohan, Hesham Abdul Wahab, Abhiruchi Chand</p>
+                <!-- Update the player controls section in your HTML -->
+<div class="player-controls">
+    <button class="control-btn" onclick="window.seekBackward()">
+        <span class="mbr-iconfont mobi-mbri-prev mobi-mbri"></span>
+    </button>
+    
+    <button class="control-btn play-btn" onclick="window.togglePlay()">
+        <span class="mbr-iconfont mobi-mbri-play mobi-mbri" id="playIcon"></span>
+    </button>
+    
+    <button class="control-btn" onclick="window.seekForward()">
+        <span class="mbr-iconfont mobi-mbri-next mobi-mbri"></span>
+    </button>
+</div>
+
+<div class="progress-container">
+    <div class="progress-bar" onclick="window.seek(event)">
+        <div class="progress" id="progress"></div>
+    </div>
+    <div class="time-display">
+        <span id="currentTime">0:00</span>
+        <span id="duration">0:00</span>
+    </div>
+</div>
+
+<div class="volume-control">
+    <span class="mbr-iconfont mobi-mbri-volume mobi-mbri volume-icon"></span>
+    <input type="range" min="0" max="1" step="0.01" value="0.7" 
+           class="volume-slider" id="volumeSlider" oninput="window.changeVolume()">
+</div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section data-bs-version="5.1" class="footer1 cid-v6LbSXeN2w" once="footers" id="footer1-p">
 
